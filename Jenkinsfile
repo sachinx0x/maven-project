@@ -2,13 +2,13 @@ pipeline {
     agent any 
  
     tools { 
-        maven 'Maven3' // Use the Maven tool configured in Jenkins 
+        maven 'Maven-3.8.8' // Use the Maven tool configured in Jenkins 
     } 
  
     stages { 
         stage('Checkout') { 
             steps { 
-                git 'https://github.com/mohankumar-master/maven3.git' 
+                git 'https://github.com/sachinx0x/maven-project.git' 
             } 
         } 
  
