@@ -1,0 +1,44 @@
+Cmd → wsl --install
+Complete the WSL setup by adding new UNIX credentials
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+ansible –-version
+Create inventory file:
+
+1. Create a folder in the desired directory. 
+
+2. Use following command to mount the ubuntu application to directory
+
+cd /mnt/e/Dhivya/DevOps/ansible-exp7
+
+3. Use Command → nano inventory To create an inventory file
+
+4. Type 
+
+5. [local]
+
+6. localhost ansible_connection=local 
+
+Ctrl + S to Save ; Ctrl + X to return to main terminal
+
+Create playbook.yml file
+
+1. Use Command → nano playbook.yml
+
+To create a YAML file
+
+Copy following content
+
+- name: Experiment 7 - Run Task on Localhost
+
+ hosts: local
+
+ tasks:
+
+ - name: Print Hello
+
+ debug:
+
+ msg: "Hello from Ansible on Windows via WSL!“
+
+3. Ctrl + S to Save ; Ctrl + X to return to main terminal
+Use Command → ansible-playbook -i inventory playbook.yml
