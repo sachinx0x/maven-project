@@ -1,0 +1,43 @@
+mvn archetype:generate -DgroupId=com.mvncmd.example -
+
+DartifactId=myapp -DarchetypeArtifactId=maven-archetype-quickstart -
+
+DinteractiveMode=false
+• mvn compile : This will compile the source code.
+
+• mvn test : This will run unit tests
+
+• mvn package : Package the project into a JAR
+
+• Run Application : java -cp target/myapp-1.0-SNAPSHOT.jar 
+
+com.example.App
+
+
+gradle –type java-application
+
+gradle build
+
+gradle run 
+
+Build and Run Maven Project
+
+Navigate to Project Path and Run Maven Project.
+
+Mvn compile
+
+Mvn package
+
+Java -cp package name path name
+
+Initialize Gradle
+
+• Navigate to Project Path and Initialize Gradle. Use Commands → gradle init
+
+• It will ask Found a Maven build. Generate a Gradle build from this? (default: yes) [yes, 
+
+no] → Type Yes
+
+• Select Groovy as build Script
+
+Type Yes for Generate build using new APIs
