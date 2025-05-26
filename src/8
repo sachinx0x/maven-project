@@ -1,0 +1,155 @@
+Create Ansible Project(Program 7)
+
+1: Log in to Jenkins
+
+2: Click New Item
+
+3: Type Item Name
+
+Click freestyle project
+
+4: click general
+
+5: Go to Environment and enable the check box
+
+ Delete workspace before build starts
+
+6: Build Step: Execute Window batch command
+
+Type:
+
+wsl ansible-playbook -i /mnt/e/Dhivya/Devops/ansible-exp7/inventory 
+
+/mnt/e/Dhivya/Devops/ansible-exp7/playbook.yml
+
+7: Click Save
+
+8: Go to Services –> Search Jenkins –> properties –> tab -> log on –> set system 
+
+username and system password –> apply –> ok
+
+9: Click Restart the services
+
+10: Log out Jenkins and Re-login
+
+11: Open Ubuntu and check Java version by using the command java –version –
+
+If the Java is not installed the ubuntu displays the command to install Java. 
+
+12: Select Java Installation command of version17 or above
+
+13: Copy and Run the command installation command 
+
+14: Give password
+
+15: Set Environment variables for Ubuntu:
+
+Open ubuntu terminal and type nano ~/.bashrc
+
+16: Scroll Down and type 
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+export PATH=$JAVA_HOME/bin:$PATH
+
+17: SAVE AND EXIT (ctrl+s and ctrl+X)
+
+18: Check JAVA version and path by using echo $JAVA_HOME
+
+19: Go to Jenkins and Click Build NOW go to Console Output And check the 
+
+status
+
+20: Create Maven Project using the command (Discussed in program 2)
+
+21: Open Playbook file and type
+
+- name: Experiment 7-Run
+
+hosts: local
+
+tasks:
+
+- name: print hai
+
+debug:
+
+msg: "hai ansible"
+
+- name: Ensure Maven is available
+
+command: mvn --version
+
+environment:
+
+JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+
+- name: Run Maven build
+
+command: mvn clean install
+
+args:
+
+chdir: /mnt/d/Subjects/Lab/Mvnproject/myapp
+
+environment:
+
+JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+
+- name: Run Maven-built JAR
+
+command: java -jar target/myapp-1.0-SNAPSHOT.jar
+
+args:
+chdir: /mnt/d/Subjects/Lab/Mvnproject/myapp
+environment:
+JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+register: jar_output
+- name: Show output from java JAR
+debug:
+var: jar_output.stdout
+22: Save and Close the playbook file
+
+23: Open POM file in visual studio code and type
+
+<build>
+
+<plugins>
+
+<plugin>
+
+<groupId>org.apache.maven.plugins</groupId>
+
+<artifactId>maven-jar-plugin</artifactId>
+
+<version>3.2.0</version>
+
+<configuration> 
+
+<archive>
+
+<manifest>
+
+<mainClass>com.mvncmd.example.App</mainClass>
+
+</manifest>
+
+</archive>
+
+</configuration>
+
+</plugin>
+
+</plugins>
+
+</build>
+
+</project>
+
+24: Save and close
+
+25: Open Jenkins And build the project
+
+26: Go to Console Output and check status. You should see the Hello World 
+
+output from the App.java class file
