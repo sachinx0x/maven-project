@@ -1,0 +1,15 @@
+---
+- name: Deploy won-app JAR
+  hosts: local
+  become: true
+
+  tasks:
+    - name: Copy JAR file from Jenkins workspace
+      copy:
+        src: /mnt/c/Users/Windows11-VM/Desktop/Maven_P/won-app/target/won-app-1.0-SNAPSHOT.jar
+        dest: /home/ubuntu/ansible-lab/app.jar
+        mode: '0755'
+
+    - name: Run the JAR file
+      shell: nohup java -jar /home/ubuntu/ansible-lab/app.jar > app.log 2>&1 &
+
