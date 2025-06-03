@@ -1,0 +1,26 @@
+wsl --install
+ubuntu install
+sudo apt install ansible
+
+mkdir ansible-lab
+cd
+
+nano inventory.ini
+[local]
+ localhost ansible_connection=local
+
+
+ansible all -i inventory.ini -m ping
+
+nano install_htop.yml
+---
+- name: Install htop system monitor tool
+  hosts: local
+  become: true
+  tasks:
+  - name: Install htop package
+    ansible.builtin.package:
+      name: htop
+      state:  present
+
+sudo ansible-playbook -i inventory.ini install_htop.yml

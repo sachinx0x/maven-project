@@ -1,0 +1,16 @@
+Jenkins
+Poll SCM :H/5 * * * *
+builds:
+	Invoke top-level Maven targets
+	clean compile test package
+	
+	Windows Batch Command
+	java -cp target/won-app-1.0-SNAPSHOT.jar com.mvit.App
+Post-build:
+	Archive the artifacts
+	target/*.jar
+
+ansible
+sudo ansible-playbook -i inventory.ini deploy.yml
+java -jar target/won-app-1.0-SNAPSHOT.jar
+
